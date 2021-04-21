@@ -13,4 +13,36 @@ RSpec.describe 'Api::V1::Users', type: :request do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'when find a user' do
+      it 'return 200 status code' do
+        user = create(:user)
+
+        get "/api/v1/users/#{user.id}", headers: get_headers(user)
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'must return attributes of a user' do
+        user = create(:user)
+
+        get "/api/v1/users/#{user.id}", headers: get_headers(user)
+
+        expect(json_body).to have_key(:id)
+        expect(json_body).to have_key(:name)
+        expect(json_body).to have_key(:email)
+      end
+
+    context 'when user is not found'
+      it 'return 404 status code' do
+        user = create(:user)
+        invalid_id = "123"
+
+        get "/api/v1/users/#{invalid_id}", headers: get_headers(user)
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end

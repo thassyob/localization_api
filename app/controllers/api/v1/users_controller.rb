@@ -6,6 +6,14 @@ class Api::V1::UsersController < ApplicationController
     head :no_content
   end
 
+  def show
+    user = User.find(params[:id])
+
+    render json: user,
+           serializer: Api::V1::Users::Show::UserSerializer,
+           status: :ok
+  end
+
   private
   
   def update_params
