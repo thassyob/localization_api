@@ -24,6 +24,15 @@ class Api::V1::LocationsController < ApplicationController
            status: :ok
   end
 
+  def list_locations_by_approximation
+    locations = Location.all
+                        .order(:lat, :long)
+
+    render json: locations,
+           each_serializer: Api::V1::Locations::ListLocationsByApproximation::LocationSerializer,
+           status: :ok
+  end
+
   private
 
   def location_params

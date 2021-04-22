@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         resources :users, only: %i[update show]
         resources :locations, only: %i[create show] do
         get 'list_locations_alphabetically', on: :collection
+        get 'list_locations_by_approximation', on: :collection
       end
     end
   end
