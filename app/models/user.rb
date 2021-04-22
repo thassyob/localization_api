@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   
   include DeviseTokenAuth::Concerns::User
 
+  has_many :locations, dependent: :destroy
+
   validates :name, :email, presence: true
 end
