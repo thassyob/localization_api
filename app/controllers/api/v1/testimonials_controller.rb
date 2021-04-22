@@ -7,6 +7,14 @@ class Api::V1::TestimonialsController < ApplicationController
            status: :created
   end
 
+  def show
+    testimonial = Testimonial.find(params[:id])
+ 
+    render json: testimonial,
+           serializer: Api::V1::Testimonials::Show::TestimonialSerializer,
+           status: :ok
+  end
+
   private
 
   def testimonial_params
