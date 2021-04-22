@@ -7,6 +7,15 @@ class Api::V1::LocationsController < ApplicationController
            status: :created
   end
 
+  def list_locations_alphabetically
+    locations = Location.all
+                        .order(location: :asc)
+
+    render json: locations,
+           each_serializer: Api::V1::Locations::ListLocationsAlphabetically::LocationSerializer,
+           status: :ok
+  end
+
   private
 
   def location_params
