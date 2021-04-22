@@ -5,7 +5,8 @@ Rails.application.routes.draw do
           registrations: 'api/v1/auth/registrations',
           sessions: 'api/v1/auth/sessions',
       }
-
+        
+        resources :testimonials, only: :create
         resources :users, only: %i[update show]
         resources :locations, only: %i[create show] do
         get 'list_locations_alphabetically', on: :collection
