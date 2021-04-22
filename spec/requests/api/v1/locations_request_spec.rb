@@ -67,6 +67,9 @@ RSpec.describe "Api::V1::Locations", type: :request do
         expect(json_body).to have_key(:location)
         expect(json_body).to have_key(:lat)
         expect(json_body).to have_key(:long)
+        expect(json_body).to have_key(:user)
+        expect(json_body[:user]).to have_key(:id)
+        expect(json_body[:user]).to have_key(:name)
       end
     end
   end
@@ -92,6 +95,9 @@ RSpec.describe "Api::V1::Locations", type: :request do
         expect(json_body[0]).to have_key(:location)
         expect(json_body[0]).to have_key(:lat)
         expect(json_body[0]).to have_key(:long)
+        expect(json_body[0]).to have_key(:user)
+        expect(json_body[0][:user]).to have_key(:id)
+        expect(json_body[0][:user]).to have_key(:name)
       end
     end
   end
@@ -117,6 +123,9 @@ RSpec.describe "Api::V1::Locations", type: :request do
         expect(json_body[0]).to have_key(:location)
         expect(json_body[0]).to have_key(:lat)
         expect(json_body[0]).to have_key(:long)
+        expect(json_body[0]).to have_key(:user)
+        expect(json_body[0][:user]).to have_key(:id)
+        expect(json_body[0][:user]).to have_key(:name)
       end
     end
   end
