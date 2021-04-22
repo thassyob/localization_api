@@ -6,8 +6,10 @@ Rails.application.routes.draw do
           sessions: 'api/v1/auth/sessions',
       }
 
-      resources :users, only: %i[update show]
-      resources :locations, only: :create
+        resources :users, only: %i[update show]
+        resources :locations, only: :create do
+        get 'list_locations_alphabetically', on: :collection
+      end
     end
   end
 end
