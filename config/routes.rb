@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       }
 
         resources :users, only: %i[update show]
-        resources :locations, only: :create do
+        resources :locations, only: %i[create show] do
         get 'list_locations_alphabetically', on: :collection
       end
     end
