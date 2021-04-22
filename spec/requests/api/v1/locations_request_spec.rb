@@ -46,6 +46,31 @@ RSpec.describe "Api::V1::Locations", type: :request do
     end
   end
 
+  describe "GET #show" do
+    context 'when show a location' do
+      it "must return 200 http status code" do
+        user = create(:user)
+        location = create(:location, user_id: user.id)
+
+        get "/api/v1/locations/#{location.id}", headers: get_headers(user)
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "must return a location" do
+        user = create(:user)
+        location = create(:location, user_id: user.id)
+
+        get "/api/v1/locations/#{location.id}", headers: get_headers(user)
+
+        expect(json_body).to have_key(:id)
+        expect(json_body).to have_key(:location)
+        expect(json_body).to have_key(:lat)
+        expect(json_body).to have_key(:long)
+      end
+    end
+  end
+
   describe 'GET #list_locations_alphabetically' do
     context 'when listing locations alphabetically' do
       it 'must return 200 status code' do
